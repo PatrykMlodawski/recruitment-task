@@ -1,0 +1,32 @@
+$color-gray: #ccc;
+$color-blue: #2775f2;
+
+$font-primary: Arial, Helvetica, sans-serif;
+
+$font-title-small: 24px;
+$font-title-medium: 32px;
+$font-title-large: 40px;
+$font-small: 14px;
+$font-medium: 18px;
+$font-large: 22px;
+
+@mixin centering($position: fixed) {
+  position: $position;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+@mixin hoveringBackground($color) {
+  transition: background-color 0.2s;
+
+  &:hover {
+    background-color: $color;
+  }
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}

@@ -11,21 +11,28 @@ const vendors = {
 
 function createListItem(name, policyUrl) {
   const item = document.createElement('li');
+  item.classList.add('gdpr-popup-list-item');
   const input = document.createElement('input');
+  input.classList.add('switch');
   input.type = 'checkbox';
   input.id = name;
+  input.checked = true;
   const label = document.createElement('label');
+  label.classList.add('switch-label');
   label.htmlFor = name;
-  const paragraphUrl = document.createElement('p');
-  paragraphUrl.classList.add('list-item-url');
-  paragraphUrl.textContent = `${name}, Politics of privacy: `;
-  const url = document.createElement('a');
-  url.textContent = policyUrl;
-  url.href = policyUrl;
+  label.appendChild(document.createElement('span'));
+  const paragraph = document.createElement('p');
+  paragraph.classList.add('list-item-paragraph');
+  paragraph.textContent = `${name}, `;
+  const policyLink = document.createElement('a');
+  policyLink.classList.add('list-item-link');
+  policyLink.textContent = 'Privacy policy';
+  policyLink.href = policyUrl;
+  policyLink.target = '_blank';
 
-  paragraphUrl.appendChild(url);
-  label.appendChild(paragraphUrl);
+  paragraph.appendChild(policyLink);
   item.appendChild(input);
+  item.appendChild(paragraph);
   item.appendChild(label);
 
   return item;
@@ -45,8 +52,6 @@ function setVendors() {
 
     const popup = createPopup('GDPR consent', vendorsList);
 
-    console.log(data);
-    console.log(vendors);
     document.body.appendChild(popup);
   })();
 }

@@ -1,0 +1,190 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box; }
+
+.gdpr-popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 95%;
+  height: 95vh;
+  border: 1px black solid;
+  border-radius: 10px;
+  box-shadow: 0 10px 10px 5px #ccc;
+  padding: 10px;
+  font-family: Arial, Helvetica, sans-serif;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: space-between; }
+  @media (min-width: 768px) {
+    .gdpr-popup {
+      padding: 15px 25px; } }
+  @media (min-width: 1280px) {
+    .gdpr-popup {
+      width: 70%;
+      padding: 15px 40px; } }
+  @media (min-width: 1600px) {
+    .gdpr-popup {
+      width: 60%; } }
+  .gdpr-popup-title {
+    text-align: center;
+    font-size: 24px;
+    margin-bottom: 15px; }
+    @media (min-width: 768px) {
+      .gdpr-popup-title {
+        font-size: 32px; } }
+    @media (min-width: 1600px) {
+      .gdpr-popup-title {
+        font-size: 40px; } }
+  .gdpr-popup-list {
+    height: 75vh;
+    overflow-y: scroll;
+    padding: 10px 5px;
+    border: 1px solid rgba(204, 204, 204, 0.3);
+    background-color: rgba(204, 204, 204, 0.1);
+    list-style: none; }
+    @media (min-width: 768px) {
+      .gdpr-popup-list {
+        padding: 10px 20px;
+        height: 80vh; } }
+    @media (min-width: 1600px) {
+      .gdpr-popup-list {
+        height: 70vh; } }
+  .gdpr-popup-buttons {
+    margin: 15px auto 0;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    width: 80%; }
+    @media (min-width: 768px) {
+      .gdpr-popup-buttons {
+        width: 40%; } }
+    @media (min-width: 1600px) {
+      .gdpr-popup-buttons {
+        width: 50%; } }
+    .gdpr-popup-buttons [class$='-button'] {
+      font-size: 14px;
+      padding: 8px 40px;
+      border-radius: 5px;
+      cursor: pointer; }
+      @media (min-width: 768px) {
+        .gdpr-popup-buttons [class$='-button'] {
+          font-size: 18px;
+          padding: 10px 50px; } }
+      @media (min-width: 1600px) {
+        .gdpr-popup-buttons [class$='-button'] {
+          font-size: 22px;
+          padding: 12px 70px; } }
+    .gdpr-popup-buttons .accept-button {
+      margin-right: 10px;
+      border: 1px solid black;
+      background-color: #2775f2;
+      color: white;
+      transition: background-color 0.2s; }
+      .gdpr-popup-buttons .accept-button:hover {
+        background-color: rgba(39, 117, 242, 0.8); }
+    .gdpr-popup-buttons .reject-button {
+      border: 1px solid #ccc;
+      background-color: rgba(204, 204, 204, 0.4);
+      transition: background-color 0.2s; }
+      .gdpr-popup-buttons .reject-button:hover {
+        background-color: rgba(204, 204, 204, 0.6); }
+
+.gdpr-popup-list-item {
+  font-size: 14px;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  padding: 10px 0; }
+  @media (min-width: 768px) {
+    .gdpr-popup-list-item {
+      font-size: 18px; } }
+  @media (min-width: 1600px) {
+    .gdpr-popup-list-item {
+      font-size: 22px; } }
+  .gdpr-popup-list-item:not(:first-of-type) {
+    border-top: 1px solid #ccc; }
+  .gdpr-popup-list-item .list-item-paragraph {
+    margin-right: 5px; }
+  .gdpr-popup-list-item .list-item-link {
+    text-decoration: none;
+    color: #2775f2;
+    transition: color 0.3s; }
+    .gdpr-popup-list-item .list-item-link:hover {
+      color: rgba(39, 117, 242, 0.7); }
+  .gdpr-popup-list-item .switch {
+    margin-left: auto; }
+
+.switch {
+  position: absolute;
+  left: -200%; }
+  .switch:checked ~ .switch-label span {
+    background-color: #2775f2; }
+    .switch:checked ~ .switch-label span::before {
+      transform: translateX(18px); }
+      @media (min-width: 1600px) {
+        .switch:checked ~ .switch-label span::before {
+          transform: translateX(24px); } }
+    .switch:checked ~ .switch-label span::after {
+      width: 10px;
+      height: 10px;
+      left: 6px;
+      background-image: url("../images/checked.svg");
+      background-size: 10px 10px; }
+      @media (min-width: 1600px) {
+        .switch:checked ~ .switch-label span::after {
+          width: 14px;
+          height: 14px;
+          left: 8px;
+          background-size: 14px 14px; } }
+
+.switch-label {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-left: auto;
+  cursor: pointer; }
+  .switch-label span {
+    position: relative;
+    width: 38px;
+    height: 20px;
+    border-radius: 15px;
+    box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.4);
+    background-color: rgba(204, 204, 204, 0.3);
+    transition: background-color 0.3s; }
+    @media (min-width: 1600px) {
+      .switch-label span {
+        width: 50px;
+        height: 26px; } }
+    .switch-label span::before, .switch-label span::after {
+      content: '';
+      position: absolute; }
+    .switch-label span::before {
+      left: 1px;
+      top: 1px;
+      width: 18px;
+      height: 18px;
+      background-color: #fff;
+      border-radius: 50%;
+      z-index: 999;
+      transition: transform 0.3s; }
+      @media (min-width: 1600px) {
+        .switch-label span::before {
+          width: 24px;
+          height: 24px; } }
+    .switch-label span::after {
+      top: 50%;
+      right: 6px;
+      width: 9px;
+      height: 9px;
+      transform: translateY(-50%);
+      background: url("../images/cross.svg");
+      background-size: 9px 9px; }
+      @media (min-width: 1600px) {
+        .switch-label span::after {
+          right: 8px;
+          width: 12px;
+          height: 12px;
+          background-size: 12px 12px; } }
