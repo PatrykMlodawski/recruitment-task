@@ -8,7 +8,6 @@ async function getVendors() {
   } catch (error) {
     console.error(error);
   }
-  console.log(data.vendors);
   return data.vendors;
 }
 
