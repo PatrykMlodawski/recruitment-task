@@ -28,7 +28,7 @@ function setVendors() {
 }
 
 function init() {
-  if (!document.cookie.match(/dprConsents/)) setVendors();
+  if (!document.cookie.match(/^.*dprConsents.*$/)) setVendors();
 }
 
 init();
