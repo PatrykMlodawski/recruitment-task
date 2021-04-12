@@ -30,3 +30,13 @@ $font-large: 22px;
   padding: 0;
   box-sizing: border-box;
 }
+
+.popup-open {
+  height: 100vh;
+  overflow: hidden;
+  backdrop-filter: blur(5px);
+}
+
+body {
+  height: 200vh;
+}

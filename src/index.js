@@ -1,63 +1,34 @@
-import createPopup from './popup';
+import createPopup, { createListItem } from './popup';
 import getVendors from './apiHandler';
 
-const vendorsList = document.createElement('ul');
-vendorsList.classList.add('gdpr-popup-list');
-
-const vendors = {
-  names: [],
-  policyUrls: [],
-};
-
-function createListItem(name, policyUrl) {
-  const item = document.createElement('li');
-  item.classList.add('gdpr-popup-list-item');
-  const input = document.createElement('input');
-  input.classList.add('switch');
-  input.type = 'checkbox';
-  input.id = name;
-  input.checked = true;
-  const label = document.createElement('label');
-  label.classList.add('switch-label');
-  label.htmlFor = name;
-  label.appendChild(document.createElement('span'));
-  const paragraph = document.createElement('p');
-  paragraph.classList.add('list-item-paragraph');
-  paragraph.textContent = `${name}, `;
-  const policyLink = document.createElement('a');
-  policyLink.classList.add('list-item-link');
-  policyLink.textContent = 'Privacy policy';
-  policyLink.href = policyUrl;
-  policyLink.target = '_blank';
-
-  paragraph.appendChild(policyLink);
-  item.appendChild(input);
-  item.appendChild(paragraph);
-  item.appendChild(label);
-
-  return item;
-}
-
 function setVendors() {
+  const vendors = {
+    ids: [],
+    names: [],
+    policyUrls: [],
+  };
+
   (async () => {
     const data = Object.values(await getVendors());
     data.forEach((vendor) => {
+      vendors.ids.push(vendor.id);
       vendors.names.push(vendor.name);
       vendors.policyUrls.push(vendor.policyUrl);
     });
 
+    const vendorsList = document.createElement('ul');
+    vendorsList.classList.add('gdpr-popup-list');
+
     for (let i = 0; i < vendors.names.length; i++) {
-      vendorsList.appendChild(createListItem(vendors.names[i], vendors.policyUrls[i]));
+      vendorsList.appendChild(createListItem(vendors.ids[i], vendors.names[i], vendors.policyUrls[i]));
     }
 
-    const popup = createPopup('GDPR consent', vendorsList);
-
-    document.body.appendChild(popup);
+    document.body.appendChild(createPopup('GDPR consent', vendorsList));
   })();
 }
 
 function init() {
-  setVendors();
+  if (!document.cookie.match(/dprConsents/)) setVendors();
 }
 
 init();

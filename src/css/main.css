@@ -3,6 +3,14 @@
   padding: 0;
   box-sizing: border-box; }
 
+.popup-open {
+  height: 100vh;
+  overflow: hidden;
+  backdrop-filter: blur(5px); }
+
+body {
+  height: 200vh; }
+
 .gdpr-popup {
   position: fixed;
   top: 50%;
@@ -10,6 +18,7 @@
   transform: translate(-50%, -50%);
   width: 95%;
   height: 95vh;
+  background-color: #fff;
   border: 1px black solid;
   border-radius: 10px;
   box-shadow: 0 10px 10px 5px #ccc;
@@ -114,31 +123,17 @@
     transition: color 0.3s; }
     .gdpr-popup-list-item .list-item-link:hover {
       color: rgba(39, 117, 242, 0.7); }
-  .gdpr-popup-list-item .switch {
-    margin-left: auto; }
 
 .switch {
   position: absolute;
   left: -200%; }
-  .switch:checked ~ .switch-label span {
+  .switch:checked + .switch-label > span {
     background-color: #2775f2; }
-    .switch:checked ~ .switch-label span::before {
+    .switch:checked + .switch-label > span .circle {
       transform: translateX(18px); }
       @media (min-width: 1600px) {
-        .switch:checked ~ .switch-label span::before {
+        .switch:checked + .switch-label > span .circle {
           transform: translateX(24px); } }
-    .switch:checked ~ .switch-label span::after {
-      width: 10px;
-      height: 10px;
-      left: 6px;
-      background-image: url("../images/checked.svg");
-      background-size: 10px 10px; }
-      @media (min-width: 1600px) {
-        .switch:checked ~ .switch-label span::after {
-          width: 14px;
-          height: 14px;
-          left: 8px;
-          background-size: 14px 14px; } }
 
 .switch-label {
   display: flex;
@@ -146,45 +141,63 @@
   justify-content: space-between;
   margin-left: auto;
   cursor: pointer; }
-  .switch-label span {
+  .switch-label:active {
+    outline: none; }
+  @media (min-width: 768px) {
+    .switch-label {
+      margin: none; } }
+  .switch-label > span {
     position: relative;
     width: 38px;
     height: 20px;
     border-radius: 15px;
     box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.4);
     background-color: rgba(204, 204, 204, 0.3);
-    transition: background-color 0.3s; }
+    transition: background-color 0.2s; }
     @media (min-width: 1600px) {
-      .switch-label span {
+      .switch-label > span {
         width: 50px;
         height: 26px; } }
-    .switch-label span::before, .switch-label span::after {
+    .switch-label > span::before, .switch-label > span::after {
       content: '';
-      position: absolute; }
-    .switch-label span::before {
-      left: 1px;
-      top: 1px;
-      width: 18px;
-      height: 18px;
-      background-color: #fff;
-      border-radius: 50%;
-      z-index: 999;
-      transition: transform 0.3s; }
-      @media (min-width: 1600px) {
-        .switch-label span::before {
-          width: 24px;
-          height: 24px; } }
-    .switch-label span::after {
+      position: absolute;
       top: 50%;
+      transform: translateY(-50%); }
+    .switch-label > span::before {
+      width: 10px;
+      height: 10px;
+      left: 6px;
+      background-image: url("../images/checked.svg");
+      background-size: 10px 10px; }
+      @media (min-width: 1600px) {
+        .switch-label > span::before {
+          width: 14px;
+          height: 14px;
+          left: 8px;
+          background-size: 14px 14px; } }
+    .switch-label > span::after {
       right: 6px;
       width: 9px;
       height: 9px;
-      transform: translateY(-50%);
       background: url("../images/cross.svg");
       background-size: 9px 9px; }
       @media (min-width: 1600px) {
-        .switch-label span::after {
+        .switch-label > span::after {
           right: 8px;
           width: 12px;
           height: 12px;
           background-size: 12px 12px; } }
+  .switch-label .circle {
+    position: absolute;
+    left: 1px;
+    top: 1px;
+    width: 18px;
+    height: 18px;
+    background-color: #fff;
+    border-radius: 50%;
+    z-index: 999;
+    transition: transform 0.2s; }
+    @media (min-width: 1600px) {
+      .switch-label .circle {
+        width: 24px;
+        height: 24px; } }
